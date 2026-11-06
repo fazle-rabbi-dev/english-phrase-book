@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="A quiet, searchable collection of everyday English phrases with Bangla meanings." />
+  <title>English Boss — everyday English, in your pocket</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <script>
+    /* Apply the saved theme before first paint. */
+    (function () {
+      try {
+        var saved = localStorage.getItem("eb-theme");
+        var dark = saved ? saved === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to phrases</a>
+
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button id="menuBtn" class="icon-btn menu-btn" type="button"
+              aria-label="Open chapters" aria-controls="sidebar" aria-expanded="false">
+        <span class="icon" data-icon="menu" aria-hidden="true"></span>
+      </button>
+
+      <a class="brand" href="#top" aria-label="English Boss — back to top">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="icon" data-icon="leaf"></span>
+        </span>
+        <span class="brand-text">
+          <strong>English Boss</strong>
+          <small>a pocket phrasebook</small>
+        </span>
+      </a>
+
+      <div class="search" role="search">
+        <span class="search-icon icon" data-icon="search" aria-hidden="true"></span>
+        <input id="searchInput" class="search-input" type="search" inputmode="search"
+               placeholder="Search English, Bangla, or phonetic…"
+               aria-label="Search phrases" autocomplete="off" spellcheck="false" />
+        <button id="clearSearch" class="clear-btn" type="button" aria-label="Clear search" hidden>
+          <span class="icon" data-icon="close" aria-hidden="true"></span>
+        </button>
+        <kbd class="search-kbd" aria-hidden="true">/</kbd>
+      </div>
+
+      <button id="themeBtn" class="icon-btn theme-btn" type="button" aria-label="Switch theme">
+        <span class="icon theme-icon-sun" data-icon="sun" aria-hidden="true"></span>
+        <span class="icon theme-icon-moon" data-icon="moon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="shell" id="top">
+    <aside id="sidebar" class="sidebar" aria-label="Chapters">
+      <div class="sidebar-head">
+        <span>Chapters</span>
+        <span class="pill" id="chapterCount">16</span>
+      </div>
+      <nav class="chapter-nav" id="chapterNav"></nav>
+      <div class="sidebar-foot">
+        <p><span class="icon" data-icon="sparkle" aria-hidden="true"></span>
+          Say it out loud. That's the trick.</p>
+      </div>
+    </aside>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <main class="main" id="main">
+      <section class="hero" id="hero">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <p class="eyebrow">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          Everyday English · সহজ ইংরেজি
+        </p>
+        <h1>Borrow the words<br /><em>you already feel.</em></h1>
+        <p class="hero-copy">
+          A quiet collection of everyday phrases — the ones that show up in real
+          conversations, client calls, and messages. Read them, copy them, say them.
+        </p>
+        <ul class="hero-stats">
+          <li><strong id="statPhrases">451</strong><span>phrases</span></li>
+          <li><strong id="statChapters">16</strong><span>chapters</span></li>
+          <li><strong>100%</strong><span>offline</span></li>
+        </ul>
+
+        <div class="hero-note" aria-hidden="true">
+          <span class="note-tape"></span>
+          <span class="note-label">Start here</span>
+          <p class="note-bangla" lang="bn">আমার মনে হয় এটা ঠিক আছে।</p>
+          <p class="note-english">I think it’s fine.</p>
+          <span class="note-mark">chapter 01</span>
+        </div>
+      </section>
+
+      <div class="result-bar" id="resultBar" hidden>
+        <p id="resultText"></p>
+        <button class="text-btn" id="clearSearchBtn" type="button">Clear search</button>
+      </div>
+
+      <div id="chapters" class="chapters"></div>
+
+      <div class="empty" id="emptyState" hidden>
+        <span class="empty-icon icon" data-icon="search" aria-hidden="true"></span>
+        <h2>No phrases found</h2>
+        <p>Nothing matches <strong id="emptyQuery"></strong>. Try a shorter word or a different spelling.</p>
+        <button class="primary-btn" id="emptyClearBtn" type="button">Clear search</button>
+      </div>
+
+      <footer class="site-footer">
+        <p><span class="icon" data-icon="book" aria-hidden="true"></span>
+          English Boss — built for daily practice.</p>
+        <p class="footer-note">Phrases from my own notebook. Press <kbd>/</kbd> to search.</p>
+      </footer>
+    </main>
+  </div>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">
+    <span class="icon" data-icon="arrowUp" aria-hidden="true"></span>
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
