@@ -14,6 +14,7 @@
   var emptyState = document.getElementById("emptyState");
   var emptyQuery = document.getElementById("emptyQuery");
   var hero = document.getElementById("hero");
+  var appCta = document.getElementById("appCta");
   var toTop = document.getElementById("toTop");
   var progressBar = document.getElementById("scrollProgress");
   var menuBtn = document.getElementById("menuBtn");
@@ -174,6 +175,7 @@
     });
 
     hero.hidden = searching;
+    if (appCta) appCta.hidden = searching;
     resultBar.hidden = !searching;
     emptyState.hidden = !searching || total > 0;
     clearSearch.hidden = query.length === 0;

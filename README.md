@@ -22,6 +22,23 @@ bunx serve .
 - Light / dark theme, remembered between visits
 - Desktop sidebar + mobile drawer, scroll spy, reading progress
 - Keyboard: `/` or `Ctrl/Cmd + K` focuses search, `Esc` clears it
+- Offline support via a service worker (after the first visit)
+- Direct Android APK download from the homepage
+
+## Offline support
+
+`sw.js` caches the app shell on the first visit. After that, the phrasebook
+opens and works with no connection. Page navigations try the network first
+and fall back to the cached copy; static files are served from cache and
+refreshed in the background.
+
+Requirements and notes:
+
+- Serve over `http://` or `https://`. Browsers do not run service workers on
+  `file://`, so open the app with the local server below or from GitHub Pages.
+- The service worker needs one online visit to install its cache.
+- When you change cached files, bump `CACHE_VERSION` in `sw.js` so visitors
+  receive the new version.
 
 ## Updating the phrases
 
@@ -39,6 +56,7 @@ in the data for search, but is never rendered.
 
 ```
 index.html          markup
+English-Boss.apk    Android app download
 assets/favicon.svg
 css/tokens.css      colors, fonts, reset
 css/layout.css      top bar, sidebar, hero, responsive
@@ -48,5 +66,7 @@ js/icons.js         generated Lucide icons (ISC)
 js/ui.js            small helpers (highlight, clipboard, toast)
 js/theme.js         light / dark theme
 js/app.js           rendering, search, navigation
+js/offline.js       service worker registration
+sw.js               offline cache
 tools/build-data.mjs
 ```

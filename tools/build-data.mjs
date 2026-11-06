@@ -24,6 +24,9 @@ const ICONS = {
   leaf: "leaf",
   sparkle: "sparkles",
   arrowUp: "arrow-up",
+  download: "download",
+  smartphone: "smartphone",
+  wifiOff: "wifi-off",
   // chapters
   ch1: "message-circle",
   ch2: "compass",
